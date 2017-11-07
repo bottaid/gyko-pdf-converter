@@ -1,8 +1,8 @@
 package it.bottai.model;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface Esercizio {
-    public List<String> estraiRigheTabella(List<String> lista);
-    public void scriviRigheTabella(List<String> righeTabella);
+    public ArrayList<String> estraiRigheTabella(ArrayList<String> lista);
+    public void scriviRigheTabella(ArrayList<String> righeTabella);
 }

@@ -22,7 +22,7 @@ public class LettoreTabellaEsercizio {
 
     public static final String SRC = "./src/main/resources/pdfs/rom_nomefile.pdf";
 
-    public List<String> parsePdf() throws IOException {
+    public ArrayList<String> parsePdf() throws IOException {
         PdfDocument pdfDoc = new PdfDocument(new PdfReader(SRC));
         Rectangle rect = new Rectangle(36, 750, 523, 56);
 
@@ -34,7 +34,7 @@ public class LettoreTabellaEsercizio {
 
 
         String actualText = extractionStrategy.getResultantText();
-        List<String> righeDocumento = new ArrayList<String>(Arrays.asList(actualText.split("\n")));
+        ArrayList<String> righeDocumento = new ArrayList<String>(Arrays.asList(actualText.split("\n")));
 
         pdfDoc.close();
         return righeDocumento;
