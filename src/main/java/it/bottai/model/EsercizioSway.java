@@ -1,11 +1,8 @@
 package it.bottai.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-public class EsercizioRom implements Esercizio {
-
+public class EsercizioSway implements Esercizio {
 
     public ArrayList<String> estraiRigheTabella(ArrayList<String> lista) {
         ArrayList<String> righeTabella = new ArrayList<String>();
@@ -29,3 +26,4 @@ public class EsercizioRom implements Esercizio {
         System.out.println(righeTabella);
     }
 }
+

@@ -1,6 +1,7 @@
 package it.bottai;
 
 import it.bottai.model.EsercizioRom;
+import it.bottai.model.EsercizioSway;
 import it.bottai.util.LettoreTabellaEsercizio;
 
 import java.io.IOException;

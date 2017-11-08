@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class EsercizioRom implements Esercizio {
+public class EsercizioPower implements Esercizio {
 
 
     public ArrayList<String> estraiRigheTabella(ArrayList<String> lista) {
