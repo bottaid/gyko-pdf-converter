@@ -24,7 +24,7 @@ public class EsercizioRom implements Esercizio {
         for (String riga : righeTabella){
             String newRiga = riga.replace(" ", ";");
             newRiga = newRiga + ";";
-            System.out.println(newRiga);
+            System.out.println("Nuova riga Rom: " +newRiga);
         }
         System.out.println(righeTabella);
     }

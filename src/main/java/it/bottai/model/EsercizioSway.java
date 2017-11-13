@@ -21,7 +21,7 @@ public class EsercizioSway implements Esercizio {
         for (String riga : righeTabella){
             String newRiga = riga.replace(" ", ";");
             newRiga = newRiga + ";";
-            System.out.println(newRiga);
+            System.out.println("Nuova riga Sway: " + newRiga);
         }
         System.out.println(righeTabella);
     }
