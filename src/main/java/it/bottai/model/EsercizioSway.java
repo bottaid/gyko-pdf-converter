@@ -25,5 +25,10 @@ public class EsercizioSway implements Esercizio {
         }
         System.out.println(righeTabella);
     }
+
+    public ArrayList<String> parsaRigheTabella(ArrayList<String> righeTabella) {
+        // valutare se creare una classe EsercizioDefault che contenga ad esempi questo metodo visto che probabilmente sarà uguale per tutti
+        return null;
+    }
 }
 

@@ -21,11 +21,18 @@ public class EsercizioRom implements Esercizio {
     }
 
     public void scriviRigheTabella(ArrayList<String> righeTabella) {
+        //qua scriverai solo su csv
+    }
+
+    public ArrayList<String> parsaRigheTabella(ArrayList<String> righeTabella) {
+        StringBuilder nuovaRiga;
+        ArrayList<String> righeTabellaParsate = new ArrayList<String>();
         for (String riga : righeTabella){
-            String newRiga = riga.replace(" ", ";");
-            newRiga = newRiga + ";";
-            System.out.println("Nuova riga Rom: " +newRiga);
+            nuovaRiga = new StringBuilder( riga.replace(" ", ";"));
+            nuovaRiga.append(";");
+            righeTabellaParsate.add(nuovaRiga.toString());
         }
-        System.out.println(righeTabella);
+        System.out.println("New Table: " + righeTabellaParsate);
+        return righeTabellaParsate;
     }
 }

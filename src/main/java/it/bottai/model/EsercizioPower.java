@@ -7,6 +7,12 @@ import java.util.List;
 public class EsercizioPower implements Esercizio {
 
 
+    public ArrayList<String> parsaRigheTabella(ArrayList<String> righeTabella) {
+
+        //Stesso discorso che ti ho scritto su sull'esercizio Sway, qua alla fine abbiamo duplicazione di codice con la classe Rom
+        return null;
+    }
+
     public ArrayList<String> estraiRigheTabella(ArrayList<String> lista) {
         ArrayList<String> righeTabella = new ArrayList<String>();
 
