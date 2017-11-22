@@ -20,23 +20,37 @@ import com.itextpdf.kernel.pdf.canvas.parser.listener.LocationTextExtractionStra
 
 public class LettoreTabellaEsercizio {
 
-    public static final String SRC = "./src/main/resources/pdfs/rom_nomefile.pdf";
+    private static final String SRC = "./src/main/resources/pdfs/";
+    private static final String OUT = "./src/main/resources/csvs/";
+    private String filename;
+
+    public void setFilename (String filename){
+        this.filename = filename;
+    }
+
+    public String getOutputDirectory () { return OUT; }
 
     public ArrayList<String> parsePdf() throws IOException {
-        PdfDocument pdfDoc = new PdfDocument(new PdfReader(SRC));
-        Rectangle rect = new Rectangle(36, 750, 523, 56);
+        try {
+            String percorsoFileCompleto = SRC+filename;
+            PdfDocument pdfDoc = new PdfDocument(new PdfReader(percorsoFileCompleto));
+            Rectangle rect = new Rectangle(36, 750, 523, 56);
 
-        FontFilter fontFilter = new FontFilter(rect);
-        FilteredEventListener listener = new FilteredEventListener();
-        LocationTextExtractionStrategy extractionStrategy = listener.attachEventListener(new LocationTextExtractionStrategy(), fontFilter);
-        PdfCanvasProcessor parser = new PdfCanvasProcessor(extractionStrategy);
-        parser.processPageContent(pdfDoc.getPage(2));
+            FontFilter fontFilter = new FontFilter(rect);
+            FilteredEventListener listener = new FilteredEventListener();
+            LocationTextExtractionStrategy extractionStrategy = listener.attachEventListener(new LocationTextExtractionStrategy(), fontFilter);
+            PdfCanvasProcessor parser = new PdfCanvasProcessor(extractionStrategy);
+            parser.processPageContent(pdfDoc.getPage(2));
 
 
-        String actualText = extractionStrategy.getResultantText();
-        ArrayList<String> righeDocumento = new ArrayList<String>(Arrays.asList(actualText.split("\n")));
+            String actualText = extractionStrategy.getResultantText();
+            ArrayList<String> righeDocumento = new ArrayList<String>(Arrays.asList(actualText.split("\n")));
 
-        pdfDoc.close();
-        return righeDocumento;
+            pdfDoc.close();
+            return righeDocumento;
+        }catch (NullPointerException e){
+            System.out.println("File non trovato.");
+            throw e;
+        }
     }
 }

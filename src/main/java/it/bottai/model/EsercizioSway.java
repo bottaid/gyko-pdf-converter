@@ -2,7 +2,7 @@ package it.bottai.model;
 
 import java.util.ArrayList;
 
-public class EsercizioSway implements Esercizio {
+public class EsercizioSway  {
 
     public ArrayList<String> estraiRigheTabella(ArrayList<String> lista) {
         ArrayList<String> righeTabella = new ArrayList<String>();
@@ -24,6 +24,12 @@ public class EsercizioSway implements Esercizio {
             System.out.println("Nuova riga Sway: " + newRiga);
         }
         System.out.println(righeTabella);
+    }
+
+    public ArrayList<String> parsaRigheTabella(ArrayList<String> righeTabella) {
+        // valutare se creare una classe EsercizioDefault che contenga
+        // ad esempi questo metodo visto che probabilmente sarà uguale per tutti
+        return null;
     }
 }
 

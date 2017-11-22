@@ -1,18 +1,18 @@
 package it.bottai.model;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class EsercizioRom implements Esercizio {
-
+public class EsercizioRom  {
 
     public ArrayList<String> estraiRigheTabella(ArrayList<String> lista) {
         ArrayList<String> righeTabella = new ArrayList<String>();
 
         for (String riga : lista){
             String primoElemento = riga.substring(0,1);
-            if (riga.startsWith("1 ")){
+            if (riga.startsWith("1 ") || riga.startsWith("# ")){
                 righeTabella.add(riga);
             }
         }
@@ -20,12 +20,26 @@ public class EsercizioRom implements Esercizio {
         return righeTabella;
     }
 
-    public void scriviRigheTabella(ArrayList<String> righeTabella) {
+    public void scriviRigheTabella(ArrayList<String> righeTabella) throws IOException {
+        //qua scriverai solo su csv
+        //stringa del filename da aggiornare a runtime
+        FileWriter f = new FileWriter("./src/main/resources/pdfs/rom_nomefile.csv");
+        BufferedWriter scriviTabella = new BufferedWriter(f);
         for (String riga : righeTabella){
-            String newRiga = riga.replace(" ", ";");
-            newRiga = newRiga + ";";
-            System.out.println("Nuova riga Rom: " +newRiga);
+            scriviTabella.write(riga);
         }
-        System.out.println(righeTabella);
+        scriviTabella.flush();
+    }
+
+    public ArrayList<String> parsaRigheTabella(ArrayList<String> righeTabella) {
+        StringBuilder nuovaRiga;
+        ArrayList<String> righeTabellaParsate = new ArrayList<String>();
+        for (String riga : righeTabella){
+            nuovaRiga = new StringBuilder( riga.replace(" ", ";"));
+            nuovaRiga.append(";");
+            righeTabellaParsate.add(nuovaRiga.toString());
+        }
+        System.out.println("New Table: " + righeTabellaParsate);
+        return righeTabellaParsate;
     }
 }

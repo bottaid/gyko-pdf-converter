@@ -1,8 +1,6 @@
 package it.bottai;
 
-import it.bottai.model.EsercizioPower;
-import it.bottai.model.EsercizioRom;
-import it.bottai.model.EsercizioSway;
+import it.bottai.model.*;
 import it.bottai.util.LettoreTabellaEsercizio;
 
 import java.io.File;
@@ -12,37 +10,28 @@ import java.util.ArrayList;
 public class GykoPdfConverter {
 
     public static void main (String ...args){
-        System.out.println("hello world");
         LettoreTabellaEsercizio lettoreTabella = new LettoreTabellaEsercizio();
         File dir = new File("./src/main/resources/pdfs");
         String elencoFile[] = dir.list();
         try {
+            //Analizzo ogni file all'interno della cartella
             for (int i = 0; i < elencoFile.length; i++){
-                if (elencoFile[i].startsWith("rom_") && elencoFile[i].endsWith(".pdf")){
-                    EsercizioRom esercizio = new EsercizioRom();
+                String filename = elencoFile[i];
+                System.out.println("Controllo file da analizzare: " +filename);
+                String outputDir = lettoreTabella.getOutputDirectory();
+                if ((filename.startsWith("rom_") || filename.startsWith("power_") || filename.startsWith("sway_")) &&  filename.endsWith(".pdf")){
+                    lettoreTabella.setFilename(filename);
+                    EsercizioDefault esercizio = new EsercizioDefault();
                     ArrayList<String> righeTabella = esercizio.estraiRigheTabella(lettoreTabella.parsePdf());
-                    esercizio.scriviRigheTabella(righeTabella);
-                    String newPath = dir+"\\"+elencoFile[i];
-                    System.out.println(newPath);
+                    righeTabella = esercizio.parsaRigheTabella(righeTabella);
+                    esercizio.scriviRigheTabella(righeTabella, outputDir, filename);
                 }
-                if (elencoFile[i].startsWith("power_") && elencoFile[i].endsWith(".pdf")){
-                    EsercizioPower esercizio = new EsercizioPower();
-                    ArrayList<String> righeTabella = esercizio.estraiRigheTabella(lettoreTabella.parsePdf());
-                    esercizio.scriviRigheTabella(righeTabella);
-                    String newPath = dir+"\\"+elencoFile[i];
-                    System.out.println(newPath);
-                }
-                if (elencoFile[i].startsWith("sway_") && elencoFile[i].endsWith(".pdf")){
-                    EsercizioSway esercizio = new EsercizioSway();
-                    ArrayList<String> righeTabella = esercizio.estraiRigheTabella(lettoreTabella.parsePdf());
-                    esercizio.scriviRigheTabella(righeTabella);
-                    String newPath = dir+"\\"+elencoFile[i];
-                    System.out.println(newPath);
+                else {
+                    System.out.println(elencoFile[i] + " non convertibile.");
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(dir);
     }
 }
